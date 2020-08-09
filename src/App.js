@@ -16,9 +16,9 @@ function App() {
   ]
   return (
     <div className="App">
-       <Pokedex pokemon={pokemon}/>
+       {/* <Pokedex pokemon={pokemon}/> */}
       {/* <Pokedex pokemon={pokemon}/> */}
-      {/* <Pokegame pokemon={pokemon}/> */}
+      <Pokegame pokemon={pokemon}/>
     </div>
   );
 }
