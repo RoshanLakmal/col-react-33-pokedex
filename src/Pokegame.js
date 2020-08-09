@@ -33,33 +33,50 @@ function splitArray(items) {
 
 
 class Pokegame extends React.Component{
-    state = {a1:[], a2:[],a1T:null ,a2T:null};
-    componentDidMount(){
-        const pokemonList = this.props.pokemon;
-        const obj = splitArray(pokemonList)
-        console.log(obj.o1T);
-        this.setState({a1: obj.o1, a2: obj.o2,a1T: obj.o1T, a2T: obj.o2T});
-    }
     render(){
+        let hand1 = [];
+        let hand2 = [ ...this.props.pokemon];
+        while(hand1.length < hand2.length){
+            let randIdx = Math.floor(Math.random() * hand2.length);
+            let randPokemon = hand2.splice(randIdx,1)[0];
+            hand1.push(randPokemon);
+        }
+        let exp1 = hand1.reduce((exp,pokemon) => exp + pokemon.base_experience,0);
+        let exp2 = hand2.reduce((exp,pokemon) => exp + pokemon.base_experience,0);
         return(
-            
             <div>
-                {this.state.a1T>this.state.a2T? <h1>Winner{this.state.a1T}
-                                                <Pokedex pokemon={this.state.a1}/>
-                                                </h1>:
-                                                <h1>Looser{this.state.a1T}
-                                                <Pokedex pokemon={this.state.a1}/>
-                                                </h1>}         
-                {this.state.a1T<this.state.a2T? <h1>Winner{this.state.a2T}
-                                                <Pokedex pokemon={this.state.a2}/>
-                                                </h1>:
-                                                <h1>Looser{this.state.a2T}
-                                                <Pokedex pokemon={this.state.a2}/>
-                                                </h1>}
-
+                <Pokedex pokemon={hand1} exp={exp1} isWinner={exp1>exp2}/>
+                <Pokedex pokemon={hand2} exp={exp2} isWinner={exp2>exp1}/>
             </div>
         )
     }
+    // state = {a1:[], a2:[],a1T:null ,a2T:null};
+    // componentDidMount(){
+    //     const pokemonList = this.props.pokemon;
+    //     const obj = splitArray(pokemonList)
+    //     console.log(obj.o1T);
+    //     this.setState({a1: obj.o1, a2: obj.o2,a1T: obj.o1T, a2T: obj.o2T});
+    // }
+    // render(){
+    //     return(
+            
+    //         <div>
+    //             {this.state.a1T>this.state.a2T? <h1>Winner{this.state.a1T}
+    //                                             <Pokedex pokemon={this.state.a1}/>
+    //                                             </h1>:
+    //                                             <h1>Looser{this.state.a1T}
+    //                                             <Pokedex pokemon={this.state.a1}/>
+    //                                             </h1>}         
+    //             {this.state.a1T<this.state.a2T? <h1>Winner{this.state.a2T}
+    //                                             <Pokedex pokemon={this.state.a2}/>
+    //                                             </h1>:
+    //                                             <h1>Looser{this.state.a2T}
+    //                                             <Pokedex pokemon={this.state.a2}/>
+    //                                             </h1>}
+
+    //         </div>
+    //     )
+    // }
 }
 
 export default Pokegame;

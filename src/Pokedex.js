@@ -21,6 +21,8 @@ class Pokedex extends React.Component{
         return(
             <div className="Pokedex">
                 <h1>Pokedex!</h1>
+                <h2>{this.props.isWinner? "Winner": "Looser"}</h2>
+                <p>Total Experience: {this.props.exp}</p>
                 <div className="Pokedex-cards">
                     {mypokemon}
                 </div>
