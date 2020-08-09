@@ -1,9 +1,10 @@
 import React from 'react';
 import Pokecard from './Pokecard';
+import './Pokedex.css';
 
 class Pokedex extends React.Component{
-    render(){
-        const pokemons = [
+    static defaultProps = {
+        pokemon : [
             {id: 4, name: 'Charmander', type: 'fire', base_experience: 62},
             {id: 7, name: 'Squirtle', type: 'water', base_experience: 63},
             {id: 11, name: 'Metapod', type: 'bug', base_experience: 72},
@@ -13,10 +14,17 @@ class Pokedex extends React.Component{
             {id: 94, name: 'Gengar', type: 'poison', base_experience: 225},
             {id: 133, name: 'Eevee', type: 'normal', base_experience: 65}
           ]
-        const mypokemon = pokemons.map(p=><Pokecard pokemon={p}/>)
+    }
+    render(){
+        const pokemons = this.props.pokemon;
+        const mypokemon = pokemons.map(p=><Pokecard key={p.id} pokemon={p}/>)
         return(
-            <div>
-                {mypokemon}
+            <div className="Pokedex">
+                <h1>Pokedex!</h1>
+                <div className="Pokedex-cards">
+                    {mypokemon}
+                </div>
+             
                 {/* <Pokecard pokemon={{id: 4, name: 'Charmander', type: 'fire', base_experience: 62}} />
                 <Pokecard pokemon={{id: 4, name: 'Charmander', type: 'fire', base_experience: 62}} /> */}
             </div>
